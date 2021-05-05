@@ -44,6 +44,7 @@ Note: All commands for running the Makefile should be executed in the project ro
 ```bash
 cd move/to/dir/where/you/want/your/gms-artic/installation
 git clone https://github.com/Clinical-Genomics-Linkoping/gms-artic.git
+cd gms-artic
 git checkout ro-implementation
 ```
 
