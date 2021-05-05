@@ -3,11 +3,11 @@
 <!-- TOC -->
 
 - [GMS-artic: Region Östergötland implementation](#gms-artic-region-Östergötland-implementation)
-    - [Running the illumina pipeline using Makefile](#running-the-illumina-pipeline-using-makefile)
+    - [Running the Illumina pipeline using Makefile](#running-the-illumina-pipeline-using-makefile)
         - [Clone and switch to correct branch](#clone-and-switch-to-correct-branch)
         - [Download primer schemes](#download-primer-schemes)
         - [Update pangolin and pangoLearn to the latest versions](#update-pangolin-and-pangolearn-to-the-latest-versions)
-        - [Start the pipeline](#start-the-pipeline)
+        - [Run the pipeline](#run-the-pipeline)
             - [Use test input data](#use-test-input-data)
             - [Use your own input data](#use-your-own-input-data)
 - [GMS-artic (ncov2019-artic-nf)](#gms-artic-ncov2019-artic-nf)
@@ -37,7 +37,7 @@
 
 ## Running the Illumina pipeline using Makefile
 
-Note: All commands when running the Makefile should be run in the project root directory, i.e. where you cloned the gms-artic github repository.
+Note: All commands for running the Makefile should be executed in the project root directory, i.e. where you cloned the gms-artic github repository.
 
 ### Clone and switch to correct branch
 
@@ -47,13 +47,24 @@ git clone https://github.com/Clinical-Genomics-Linkoping/gms-artic.git
 git checkout ro-implementation
 ```
 
+Note: *ro* in the branch name comes from words *Region Östergötland*.
+
 ### Download primer schemes
 
-The downloading of the primer schemes should be done when they are updated or when running the pipeline for the first time. Note that this command requires sudo privileges.
+The downloading of the primer schemes should be done in either of the following cases:
+1. when they are updated in the original repository: https://github.com/artic-network/primer-schemes.git
+
+2. when running the pipeline for the first time.
+
+Note that this command requires sudo privileges.
+
+Note also that in either of the previous cases some other configurations elsewhere might be necessary to be updated as well.
 
 ```bash
 make ladda_ner_primer_schemes
 ```
+
+Note: same schemes path must be used when running the pipeline.
 
 ### Update pangolin and pangoLearn to the latest versions
 
