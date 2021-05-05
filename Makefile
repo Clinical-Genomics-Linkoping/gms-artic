@@ -72,4 +72,4 @@ ladda_ner_primer_schemes:
 starta_gms-artic:
 	@echo "NB: make ladda_ner_primer_schemes måste ha körts innan med internet uppkoppling på."
 	@echo "Kör gms-artic pipelinen:"
-	@($(CONDA_ACTIVATE) ; cd /home/Hanna/Documents/gms-artic ; nextflow run main.nf -profile conda --illumina --prefix $(NAME) --directory $(FASTQS) --schemeRepoURL $(SCHEMES_PATH)primer-schemes/ -resume )
+	@($(CONDA_ACTIVATE) ; nextflow run main.nf -profile conda --illumina --prefix $(NAME) --directory $(FASTQS) --schemeRepoURL $(SCHEMES_PATH)primer-schemes/ -resume )
