@@ -62,7 +62,8 @@ Note that this command requires sudo privileges.
 Note also that in either of the previous cases some other configurations elsewhere might be necessary to be updated as well.
 
 ```bash
-make ladda_ner_primer_schemes
+make ladda_ner_primer_schemes \
+SCHEMES_PATH=/the/absolute/path/to/where/you/want/the/primer_schemes/
 ```
 
 Note: same schemes path must be used when running the pipeline.
@@ -78,7 +79,8 @@ make uppdatera_pangolin
 #### Use test input data
 
 ```bash
-make starta_gms-artic
+make starta_gms-artic \
+SCHEMES_PATH=/the/absolute/path/to/where/you/want/the/primer_schemes/
 ```
 
 Test input data come with the cloning of the repository and resides in directory:
@@ -89,7 +91,8 @@ Test input data come with the cloning of the repository and resides in directory
 ```bash
 make starta_gms-artic \
 FASTQS=/the/absolute/path/to/fastq-files \
-NAME=COMMON_NAME_FOR_ALL_THE_FASTQ_FILES
+NAME=COMMON_NAME_FOR_ALL_THE_FASTQ_FILES \
+SCHEMES_PATH=/the/absolute/path/to/where/you/want/the/primer_schemes/
 ```
 
 
