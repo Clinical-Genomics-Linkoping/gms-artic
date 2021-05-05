@@ -1,8 +1,96 @@
+# GMS-artic: Region Östergötland implementation
+
+<!-- TOC -->
+
+- [GMS-artic: Region Östergötland implementation](#gms-artic-region-Östergötland-implementation)
+    - [Running the illumina pipeline using Makefile](#running-the-illumina-pipeline-using-makefile)
+        - [Clone and switch to correct branch](#clone-and-switch-to-correct-branch)
+        - [Download primer schemes](#download-primer-schemes)
+        - [Update pangolin and pangoLearn to the latest versions](#update-pangolin-and-pangolearn-to-the-latest-versions)
+        - [Start the pipeline](#start-the-pipeline)
+            - [Use test input data](#use-test-input-data)
+            - [Use your own input data](#use-your-own-input-data)
+- [GMS-artic (ncov2019-artic-nf)](#gms-artic-ncov2019-artic-nf)
+    - [Major changes](#major-changes)
+    - [Self-test](#self-test)
+        - [Illumina](#illumina)
+        - [Nanopore](#nanopore)
+    - [Quick-start](#quick-start)
+        - [Illumina](#illumina-1)
+        - [Nanopore](#nanopore-1)
+            - [Nanopolish](#nanopolish)
+            - [Medaka](#medaka)
+    - [Installation](#installation)
+    - [Containers](#containers)
+    - [Conda](#conda)
+    - [Executors](#executors)
+    - [Profiles](#profiles)
+    - [Config](#config)
+        - [Options](#options)
+        - [Workflows](#workflows)
+            - [Nanopore](#nanopore-2)
+            - [Illumina](#illumina-2)
+    - [QC](#qc)
+    - [Output](#output)
+
+<!-- /TOC -->
+
+## Running the Illumina pipeline using Makefile
+
+Note: All commands when running the Makefile should be run in the project root directory, i.e. where you cloned the gms-artic github repository.
+
+### Clone and switch to correct branch
+
+```bash
+cd move/to/dir/where/you/want/your/gms-artic/installation
+git clone https://github.com/Clinical-Genomics-Linkoping/gms-artic.git
+git checkout ro-implementation
+```
+
+### Download primer schemes
+
+The downloading of the primer schemes should be done when they are updated or when running the pipeline for the first time. Note that this command requires sudo privileges.
+
+```bash
+make ladda_ner_primer_schemes
+```
+
+### Update pangolin and pangoLearn to the latest versions
+
+```bash
+make uppdatera_pangolin
+```
+
+### Run the pipeline
+
+#### Use test input data
+
+```bash
+make starta_gms-artic
+```
+
+Test input data come with the cloning of the repository and resides in directory:
+`.github/data/fastqs/`.
+
+#### Use your own input data
+
+```bash
+make starta_gms-artic \
+FASTQS=/the/absolute/path/to/fastq-files \
+NAME=COMMON_NAME_FOR_ALL_THE_FASTQ_FILES
+```
+
+
+
+---
+
+**Original instructions for setting up the pipeline:**
+
+---
+
 # GMS-artic (ncov2019-artic-nf)
 
 A nextflow pipeline with a GMS touch for running the ARTIC network's fieldbioinformatics tools (https://github.com/artic-network/fieldbioinformatics).
-
-------------
 
 #### Major changes
 
@@ -45,7 +133,7 @@ Alternatively you can avoid just the cloning of the scheme repository to remain 
  `nextflow run connor-lab/ncov2019-artic-nf [-profile conda,singularity,docker,slurm,lsf] --medaka --prefix "output_file_prefix" --basecalled_fastq /path/to/directory --fast5_pass /path/to/directory --sequencing_summary /path/to/sequencing_summary.txt`
 
 #### Installation
-An up-to-date version of Nextflow is required because the pipeline is written in DSL2. Following the instructions at https://www.nextflow.io/ to download and install Nextflow should get you a recent-enough version. 
+An up-to-date version of Nextflow is required because the pipeline is written in DSL2. Following the instructions at https://www.nextflow.io/ to download and install Nextflow should get you a recent-enough version.
 
 #### Containers
 This repo contains both [Singularity]("https://sylabs.io/guides/3.0/user-guide/index.html") and Dockerfiles. You can build the Singularity containers locally by running `scripts/build_singularity_containers.sh` and use them with `-profile singularity` The containers will be available from Docker/Singularityhub shortly.
@@ -59,7 +147,7 @@ The repo contains a environment.yml files which automatically build the correct 
 By default, the pipeline just runs on the local machine. You can specify `-profile slurm` to use a SLURM cluster, or `-profile lsf` to use an LSF cluster. In either case you may need to also use one of the COG-UK institutional config profiles (phw or sanger), or provide queue names to use in your own config file.
 
 #### Profiles
-You can use multiple profiles at once, separating them with a comma. This is described in the Nextflow [documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) 
+You can use multiple profiles at once, separating them with a comma. This is described in the Nextflow [documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles)
 
 #### Config
 Common configuration options are set in `conf/base.config`. Workflow specific configuration options are set in `conf/nanopore.config` and `conf/illumina.config` They are described and set to sensible defaults (as suggested in the [nCoV-2019 novel coronavirus bioinformatics protocol](https://artic.network/ncov-2019/ncov2019-bioinformatics-sop.html "nCoV-2019 novel coronavirus bioinformatics protocol"))
@@ -78,7 +166,7 @@ guppy_barcoder --require_barcodes_both_ends -i run_name -s output_directory --ar
 ```
 
 ###### Illumina
-The Illumina workflow leans heavily on the excellent [ivar](https://github.com/andersen-lab/ivar) for primer trimming and consensus making. This workflow will be updated to follow ivar, as its also in very active development! Use `--illumina` to run the Illumina workflow. Use `--directory` to point to an Illumina output directory usually coded something like: `<date>_<machine_id>_<run_no>_<some_zeros>_<flowcell>`. The workflow will recursively grab all fastq files under this directory, so be sure that what you want is in there, and what you don't, isn't! 
+The Illumina workflow leans heavily on the excellent [ivar](https://github.com/andersen-lab/ivar) for primer trimming and consensus making. This workflow will be updated to follow ivar, as its also in very active development! Use `--illumina` to run the Illumina workflow. Use `--directory` to point to an Illumina output directory usually coded something like: `<date>_<machine_id>_<run_no>_<some_zeros>_<flowcell>`. The workflow will recursively grab all fastq files under this directory, so be sure that what you want is in there, and what you don't, isn't!
 
 Important config options are:
 
@@ -95,4 +183,4 @@ Important config options are:
 A script to do some basic COG-UK QC is provided in `bin/qc.py`. This currently tests if >50% of reference bases are covered by >10 reads (Illumina) or >20 reads (Nanopore), OR if there is a stretch of more than 10 Kb of sequence without N - setting qc_pass in `<outdir>/<prefix>.qc.csv` to TRUE. `bin/qc.py` can be extended to incorporate any QC test, as long as the script outputs a csv file a "qc_pass" last column, with samples TRUE or FALSE.
 
 #### Output
-A subdirectory for each process in the workflow is created in `--outdir`. A `qc_pass_climb_upload` subdirectory containing files important for [COG-UK](https://github.com/COG-UK) is created. 
+A subdirectory for each process in the workflow is created in `--outdir`. A `qc_pass_climb_upload` subdirectory containing files important for [COG-UK](https://github.com/COG-UK) is created.
