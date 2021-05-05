@@ -6,6 +6,7 @@
     - [Running the Illumina pipeline using Makefile](#running-the-illumina-pipeline-using-makefile)
         - [Clone and switch to correct branch](#clone-and-switch-to-correct-branch)
         - [Download primer schemes](#download-primer-schemes)
+        - [Create `artic-ncov2019-illumina` conda environment](#create-artic-ncov2019-illumina-conda-environment)
         - [Update pangolin and pangoLearn to the latest versions](#update-pangolin-and-pangolearn-to-the-latest-versions)
         - [Run the pipeline](#run-the-pipeline)
             - [Use test input data](#use-test-input-data)
@@ -66,7 +67,19 @@ make ladda_ner_primer_schemes \
 SCHEMES_PATH=/the/absolute/path/to/where/you/want/the/primer_schemes/
 ```
 
-Note: same schemes path must be used when running the pipeline.
+Note 1: same schemes path must be used when running the pipeline.
+
+Note 2: the final '/' is mandatory in the path.
+
+### Create `artic-ncov2019-illumina` conda environment
+
+The conda environment is defined in: `environments/illumina/environment.yml`.
+
+```bash
+conda env create -f environments/illumina/environment.yml
+# or with mamba:
+mamba env create -f environments/illumina/environment.yml
+```
 
 ### Update pangolin and pangoLearn to the latest versions
 
