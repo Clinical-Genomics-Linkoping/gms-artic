@@ -6,6 +6,8 @@ CONDA_ACTIVATE=source $$(conda info --base)/etc/profile.d/conda.sh ; conda activ
 
 FASTQS?=.github/data/fastqs/
 
+SCHEMES_PATH?=/home/Hanna/Documents/
+
 NAME?=test_data
 
 anvandning:
@@ -29,7 +31,13 @@ anvandning:
 	@echo ""
 	@echo "make ladda_ner_primer_schemes"
 	@echo "Kommandot utför följande steg:"
-	@echo "1. Raderar bort de gamla primer schemesen från: /home/Hanna/Documents/primer-schemes mappen"
+	@echo "1. Raderar bort de gamla primer schemesen från: $(SCHEMES_PATH)primer-schemes mappen"
+	@echo "2. Laddar ner senaste primer_schemes:en med kommandot: git clone https://github.com/artic-network/primer-schemes.git"
+	@echo ""
+	@echo ""
+	@echo "make ladda_ner_primer_schemes SCHEMES_PATH=/den_absoluta_pathen/till/vart/primer_schemes/ska/klonas/"
+	@echo "Kommandot utför följande steg:"
+	@echo "1. Raderar bort de gamla primer schemesen från: /den_absoluta_pathen/till/vart/primer_schemes/ska/klonas/primer-schemes mappen"
 	@echo "2. Laddar ner senaste primer_schemes:en med kommandot: git clone https://github.com/artic-network/primer-schemes.git"
 	@echo ""
 	@echo ""
@@ -46,7 +54,7 @@ anvandning:
 pangoLearn_version:
 	@echo "Kollar vilken version av pangoLearn är installerad just nu i $(CURRENT_CONDA_ENV_NAME) conda miljöön..."
 	@($(CONDA_ACTIVATE) ; pangolin -pv )
-	
+
 pango_version:
 	@echo "Kollar vilken version av pangolin är installerad just nu i $(CURRENT_CONDA_ENV_NAME) conda miljöön..."
 	@($(CONDA_ACTIVATE) ; pangolin -v )
@@ -56,11 +64,12 @@ uppdatera_pangolin:
 	@($(CONDA_ACTIVATE) ; pangolin --update )
 
 ladda_ner_primer_schemes:
-	@echo "Klonar primer scheman från Github till: /home/Hanna/Documents/"
-	@(cd /home/Hanna/Documents/ ; sudo rm -rf primer-schemes)
-	@(cd /home/Hanna/Documents/ ; git clone https://github.com/artic-network/primer-schemes.git)
+	@echo "Raderar eventualla primer scheman från mappen: $(SCHEMES_PATH)"
+	@(cd $(SCHEMES_PATH) ; sudo rm -rf primer-schemes)
+	@echo "Klonar primer scheman från Github till: $(SCHEMES_PATH)"
+	@(cd $(SCHEMES_PATH) ; git clone https://github.com/artic-network/primer-schemes.git)
 
 starta_gms-artic:
 	@echo "NB: make ladda_ner_primer_schemes måste ha körts innan med internet uppkoppling på."
 	@echo "Kör gms-artic pipelinen:"
-	@($(CONDA_ACTIVATE) ; cd /home/Hanna/Documents/gms-artic ; nextflow run main.nf -profile conda --illumina --prefix $(NAME) --directory $(FASTQS) --schemeRepoURL /home/Hanna/Documents/primer-schemes/ -resume )
+	@($(CONDA_ACTIVATE) ; cd /home/Hanna/Documents/gms-artic ; nextflow run main.nf -profile conda --illumina --prefix $(NAME) --directory $(FASTQS) --schemeRepoURL $(SCHEMES_PATH)primer-schemes/ -resume )
