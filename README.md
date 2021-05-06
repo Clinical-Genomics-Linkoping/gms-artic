@@ -60,14 +60,15 @@ The downloading of the primer schemes should be done in either of the following 
 
 Note that this command requires sudo privileges.
 
-Note also that in either of the previous cases some other configurations elsewhere might be necessary to be updated as well.
+Change bash variable `SCHEMES_PATH` below to where you wish the primer schemes to be installed.
 
 ```bash
-make ladda_ner_primer_schemes \
-SCHEMES_PATH=/the/absolute/path/to/where/you/want/the/primer_schemes/
+SCHEMES_PATH=/home/Hanna/Documents/test_primer_schemes/
+sed -i "s^SCHEMES_PATH?=/home/Hanna/Documents/^SCHEMES_PATH?=$SCHEMES_PATH^" Makefile
+make ladda_ner_primer_schemes
 ```
 
-Note 1: same schemes path must be used when running the pipeline.
+<!-- TODO: Change sed command so that it works even when rerunning it. -->
 
 Note 2: the final '/' is mandatory in the path.
 
