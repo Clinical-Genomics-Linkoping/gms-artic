@@ -113,6 +113,9 @@ NAME=COMMON_NAME_FOR_ALL_THE_FASTQ_FILES \
 SCHEMES_PATH=/the/absolute/path/to/where/you/want/the/primer_schemes/
 ```
 
+## Finding the results
+
+The pangolin results are placed in directory: `results/ncovIllumina_sequenceAnalysis_pangolinTyping` and multiqc results are in file: `results/multiqc/<sample_name>_multiqc.html`
 
 
 ---
