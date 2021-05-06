@@ -12,7 +12,7 @@ NAME?=test_data
 
 anvandning:
 	@echo ""
-	@echo "För att köra pipelinen krävs det att conda miljö definierad i: /home/Hanna/Documents/gms-artic/environments/illumina/environment.yml har skapats innan."
+	@echo "För att köra pipelinen krävs det att conda miljö definierad i: environments/illumina/environment.yml har skapats innan."
 	@echo ""
 	@echo ""
 	@echo "Alternativen för att hantera/köra gms-artic pipelinen:"
