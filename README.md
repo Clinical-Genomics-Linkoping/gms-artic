@@ -11,6 +11,7 @@
         - [Run the pipeline](#run-the-pipeline)
             - [Use test input data](#use-test-input-data)
             - [Use your own input data](#use-your-own-input-data)
+    - [Finding the results](#finding-the-results)
 - [GMS-artic (ncov2019-artic-nf)](#gms-artic-ncov2019-artic-nf)
     - [Major changes](#major-changes)
     - [Self-test](#self-test)
