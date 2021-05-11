@@ -53,23 +53,28 @@ Note: *ro* in the branch name comes from words *Region Östergötland*.
 
 ### Download primer schemes
 
-The downloading of the primer schemes should be done in either of the following cases:
+The downloading of the primer schemes should be done in either of the following cases[^note-1]:
 1. when they are updated in the original repository: https://github.com/artic-network/primer-schemes.git
-
 2. when running the pipeline for the first time.
 
-Note that this command requires sudo privileges.
+[^note-1]: in either of the cases some other configurations elsewhere might be necessary to be updated as well.
 
-Note also that in either of the previous cases some other configurations elsewhere might be necessary to be updated as well.
+<!-- TODO: Write those configuration changes here, if they are necessary -->
+
+Change bash variable `SCHEMES_PATH` below to where you wish the primer schemes to be installed.
 
 ```bash
-make ladda_ner_primer_schemes \
-SCHEMES_PATH=/the/absolute/path/to/where/you/want/the/primer_schemes/
+SCHEMES_PATH=/home/Hanna/Documents/test_primer_schemes/
+sed -i "s^SCHEMES_PATH?=/home/Hanna/Documents/^SCHEMES_PATH?=$SCHEMES_PATH^" Makefile
+make ladda_ner_primer_schemes
 ```
 
-Note 1: same schemes path must be used when running the pipeline.
+<!-- TODO: Change sed command so that it works even when rerunning it. -->
 
-Note 2: the final '/' is mandatory in the path.
+Notes:
+1. this command requires sudo privileges.
+2. same schemes path must be used when running the pipeline.
+3. the final '/' is mandatory in the path.
 
 ### Create `artic-ncov2019-illumina` conda environment
 
@@ -108,6 +113,9 @@ NAME=COMMON_NAME_FOR_ALL_THE_FASTQ_FILES \
 SCHEMES_PATH=/the/absolute/path/to/where/you/want/the/primer_schemes/
 ```
 
+## Finding the results
+
+The pangolin results are placed in directory: `results/ncovIllumina_sequenceAnalysis_pangolinTyping` and multiqc results are in file: `results/multiqc/<sample_name>_multiqc.html`
 
 
 ---
