@@ -1,14 +1,14 @@
-SHELL=/bin/bash
+SHELL = /bin/bash
 
-CURRENT_CONDA_ENV_NAME=artic-ncov2019-illumina
+CURRENT_CONDA_ENV_NAME = artic-ncov2019-illumina
 # Note that the extra activate is needed to ensure that the activate floats env to the front of PATH
-CONDA_ACTIVATE=source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate ; conda activate $(CURRENT_CONDA_ENV_NAME)
+CONDA_ACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate ; conda activate $(CURRENT_CONDA_ENV_NAME)
 
-FASTQS?=.github/data/fastqs/
+FASTQS = .github/data/fastqs/
 
-SCHEMES_PATH?=/home/Hanna/Documents/
+SCHEMES_PATH = /home/Hanna/Documents/
 
-NAME?=test_data
+NAME = test_data
 
 define colourcyan
       @tput setaf 6
