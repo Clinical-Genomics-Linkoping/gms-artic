@@ -54,11 +54,11 @@ Note: *ro* in the branch name comes from words *Region Östergötland*.
 
 ### Download primer schemes
 
-The downloading of the primer schemes should be done in either of the following cases[^note-1]:
+The downloading of the primer schemes should be done in either of the following cases<sup>1</sup>:
 1. when they are updated in the original repository: https://github.com/artic-network/primer-schemes.git
 2. when running the pipeline for the first time.
 
-[^note-1]: in either of the cases some other configurations elsewhere might be necessary to be updated as well.
+<sup>1</sup>: in either of the cases some other configurations elsewhere might be necessary to be updated as well.
 
 <!-- TODO: Write those configuration changes here, if they are necessary -->
 
