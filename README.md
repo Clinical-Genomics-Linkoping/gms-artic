@@ -54,11 +54,10 @@ Note: *ro* in the branch name comes from words *Region Östergötland*.
 
 ### Download primer schemes
 
-The downloading of the primer schemes should be done in either of the following cases<sup>1</sup>:
+The downloading of the primer schemes should be done in either of the following cases<sup>[1](#footnote1)</sup>:
 1. when they are updated in the original repository: https://github.com/artic-network/primer-schemes.git
 2. when running the pipeline for the first time.
 
-<sup>1</sup>: in either of the cases some other configurations elsewhere might be necessary to be updated as well.
 
 <!-- TODO: Write those configuration changes here, if they are necessary -->
 
@@ -117,6 +116,9 @@ SCHEMES_PATH=/the/absolute/path/to/where/you/want/the/primer_schemes/
 ## Finding the results
 
 The pangolin results are placed in directory: `results/ncovIllumina_sequenceAnalysis_pangolinTyping` and multiqc results are in file: `results/multiqc/<sample_name>_multiqc.html`
+
+
+<a name="footnote1">1</a>: In either of the cases some other configurations elsewhere might be necessary to be updated as well
 
 
 ---
