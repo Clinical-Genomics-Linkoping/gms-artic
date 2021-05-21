@@ -6,7 +6,7 @@ CONDA_ACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda act
 
 FASTQS = .github/data/fastqs/
 
-SCHEMES_PATH = /home/Hanna/Documents/
+SCHEMES_PATH = /home/rada/Documents/CGL/gms-artic
 
 NAME = test_data
 

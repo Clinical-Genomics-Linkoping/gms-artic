@@ -65,7 +65,7 @@ Change bash variable `SCHEMES_PATH` below to where you wish the primer schemes t
 
 ```bash
 SCHEMES_PATH=/home/Hanna/Documents/test_primer_schemes/
-sed -i "s^SCHEMES_PATH?=/home/Hanna/Documents/^SCHEMES_PATH?=$SCHEMES_PATH^" Makefile
+sed -i "s^SCHEMES_PATH = /home/Hanna/Documents/^SCHEMES_PATH = $SCHEMES_PATH^" Makefile
 make ladda_ner_primer_schemes
 ```
 
